@@ -1,0 +1,62 @@
+body {
+  font-family: "Roboto Mono";
+}
+
+.card {
+  border: 1px #e4e4e4 solid;
+  box-shadow: 8px 8px 8px #e4e4e4;
+}
+
+.nav-link {
+  text-align: center;
+  width: 50%;
+}
+
+.nav-tabs,
+.nav-item.nav-link,
+.nav-item.nav-link:hover,
+.nav-item.nav-link.active {
+  border: none;
+  color: #858585;
+}
+
+.nav-item.nav-link.active span {
+  border-bottom: 5px #555555 solid;
+  color: #555555;
+}
+
+.form-group label {
+  color: #555555;
+}
+
+.form-control {
+  border-radius: 0;
+}
+
+.form-control:focus {
+  border: 1px #858585 solid;
+  box-shadow: 2px 2px 5px #858585;
+}
+
+.btn {
+  border-radius: 0;
+}
+
+.btn-outline-secondary:hover {
+  color: white;
+  background-color: #555555;
+}
+
+.input-group-prepend {
+  cursor: pointer;
+}
+
+.input-group-text {
+  border-radius: 0;
+  background-color: transparent;
+  color: #555555;
+}
+
+.card-header {
+  background: white;
+}

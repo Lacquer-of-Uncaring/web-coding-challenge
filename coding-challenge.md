@@ -48,4 +48,4 @@ Mockups
 
 How will we review?
 ---------------
-[Guidelines can be found here](README.md)
+Guidelines can be found in the original repo.
