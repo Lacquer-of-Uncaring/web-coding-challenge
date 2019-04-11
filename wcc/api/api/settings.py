@@ -37,9 +37,16 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # user apps
     'rest_framework',
     'shops',
+    'custom_user',
 ]
+
+# This is to change the nomal user model to one with email auth
+AUTH_USER_MODEL = 'custom_user.CustomUser'
+# AUTHENTICATION_BACKENDS = ('custom_user.backends.CustomUserAuth',)
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
