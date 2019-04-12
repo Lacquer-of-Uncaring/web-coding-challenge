@@ -86,7 +86,71 @@ Now you should be ready to migrate the models:
 (py) λ python manage.py migrate
 (py) λ python manage.py runserver
 ```
-The api should be up now at `localhost:8000`
+The api should be up now at `localhost:8000`.
+
+A GET request to `(API_ROOT)/shops?lon=-6.8243&lat=33.80086` will return a list of shops sorted by ascending distances (in kilometers) from the specified coordinates. Ommiting the parameters will return an unsorted list. 
+
+```json
+GET /shops/?lon=-6.8243&lat=33.80086
+HTTP 200 OK
+Allow: GET, POST, HEAD, OPTIONS
+Content-Type: application/json
+Vary: Accept
+
+[
+    {
+        "id": 533,
+        "name": "Kiggle",
+        "picture": "http://placehold.it/150x150",
+        "_id": "5a0c6755fb3aac66aafe26e0",
+        "location": "SRID=4326;POINT (-6.8244 33.80087)",
+        "email": "leilaware@kiggle.com",
+        "city": "Rabat",
+        "distance": "0.0"
+    },
+    {
+        "id": 602,
+        "name": "Proflex",
+        "picture": "http://placehold.it/150x150",
+        "_id": "5a0c680afd3eb67969316d0e",
+        "location": "SRID=4326;POINT (-6.82649 33.80586)",
+        "email": "leilaware@proflex.com",
+        "city": "Rabat",
+        "distance": "0.6"
+    },
+    {
+        "id": 648,
+        "name": "Isosphere",
+        "picture": "http://placehold.it/150x150",
+        "_id": "5a0c687dfd3eb67969316d3c",
+        "location": "SRID=4326;POINT (-6.82254 33.80692)",
+        "email": "leilaware@isosphere.com",
+        "city": "Rabat",
+        "distance": "0.7"
+    },
+    ...
+```
+
+You can also query specific shops using their id `(API_ROOT)/shops/602?lon=-6.8243&lat=33.80086`:
+
+```json
+GET /shops/602/?lon=-6.8243&lat=33.80086
+HTTP 200 OK
+Allow: GET, PUT, PATCH, DELETE, HEAD, OPTIONS
+Content-Type: application/json
+Vary: Accept
+
+{
+    "id": 602,
+    "name": "Proflex",
+    "picture": "http://placehold.it/150x150",
+    "_id": "5a0c680afd3eb67969316d0e",
+    "location": "SRID=4326;POINT (-6.82649 33.80586)",
+    "email": "leilaware@proflex.com",
+    "city": "Rabat",
+    "distance": "0.6"
+}
+```
 
 ## Mockups
 

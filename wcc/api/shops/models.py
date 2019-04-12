@@ -11,3 +11,6 @@ class Shops(models.Model):
     location = models.PointField(null=True, blank=True)
     email = models.EmailField(max_length=200)
     city = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.name
