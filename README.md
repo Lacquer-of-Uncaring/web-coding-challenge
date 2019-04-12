@@ -43,7 +43,7 @@ cd into the api directory and run:
 (py) λ pip install -r requirements.txt
 ```
 
-You might still need to install GDAL after this.
+You might still need to install [GDAL](https://django.readthedocs.io/en/2.1.x/ref/contrib/gis/install) after this.
 If you're on windows you might also run into [this problem.](https://stackoverflow.com/questions/44140241/geodjango-on-windows-try-setting-gdal-library-path-in-your-settings) In my case I had to modify the `(Python Root)\Lib\site-packages\django\contrib\gis\gdal\libgdal.py` file and my particular version of GDAL (gdal204) into the libnames array below:
 
 ```python
@@ -59,7 +59,7 @@ else:
     raise ImproperlyConfigured('GDAL is unsupported on OS "%s".' % os.name)
 ```
 
-The Django REST api talks to a Postgis database to allow for loacation related calculations. A [docker container](https://hub.docker.com/r/kartoza/postgis) can be used for easy set up:
+The Django REST api talks to a Postgis database to allow for location related calculations. A [docker container](https://hub.docker.com/r/kartoza/postgis) can be used for easy set up:
 
 ```bash
 (py) λ docker run --name=postgisdb -d -e POSTGRES_USER=admin -e POSTGRES_PASS=admin -e POSTGRES_DBNAME=gis -p 9000:5432 kartoza/postgis
