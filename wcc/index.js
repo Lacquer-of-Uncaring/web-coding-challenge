@@ -2,19 +2,25 @@ const API_ROOT = "http://localhost:8000/";
 
 const NearbyCards = document.getElementById("nearby-cards");
 const BingoAlert = document.getElementById("bingo-alert");
+const BingoWait = document.getElementById("bingo-wait");
 let UserPosition = [];
 
 const GetNearbyShops = event => {
   // If geolocation is available, try to get the user's position
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(SuccessCallback, ErrorCallback);
+    BingoWait.style.display = "inherit";
+    BingoWait.innerHTML =
+      'Getting geolocation information <i class="fas fa-spinner"></i>';
   } else {
-    BingoAlert.innerHTML = BingoAlert.style.display = "inherit";
-    ("Sorry, your browser does not support HTML5 geolocation.");
+    BingoAlert.innerHTML =
+      "Sorry, your browser does not support HTML5 geolocation.";
+    BingoAlert.style.display = "inherit";
   }
 };
 
 SuccessCallback = position => {
+  BingoWait.style.display = "none";
   UserPosition.push(position.coords.longitude);
   UserPosition.push(position.coords.latitude);
 
@@ -49,15 +55,18 @@ SuccessCallback = position => {
 };
 
 ErrorCallback = error => {
+  BingoWait.style.display = "none";
   if (error.code == 1) {
     BingoAlert.innerHTML = "You've decided not to share your position.";
     BingoAlert.style.display = "inherit";
   } else if (error.code == 2) {
-    BingoAlert.innerHTML = BingoAlert.style.display = "inherit";
-    ("The network is down or the positioning service can't be reached.");
+    BingoAlert.innerHTML =
+      "The network is down or the positioning service can't be reached.";
+    BingoAlert.style.display = "inherit";
   } else if (error.code == 3) {
-    BingoAlert.innerHTML = BingoAlert.style.display = "inherit";
-    ("The attempt timed out before it could get the location data.");
+    BingoAlert.innerHTML =
+      "The attempt timed out before it could get the location data.";
+    BingoAlert.style.display = "inherit";
   } else {
     BingoAlert.innerHTML = "Geolocation failed due to unknown error.";
     BingoAlert.style.display = "inherit";
