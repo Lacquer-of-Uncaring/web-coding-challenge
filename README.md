@@ -128,7 +128,9 @@ Vary: Accept
         "city": "Rabat",
         "distance": "0.7"
     },
-    ...
+    .
+    .
+    .
 ```
 
 You can also query specific shops using their id `(API_ROOT)/shops/602?lon=-6.8243&lat=33.80086`:
@@ -152,8 +154,55 @@ Vary: Accept
 }
 ```
 
-## Mockups
+With pagination enabled the response looks a bit different:
 
-![Main Page - List of shops neaby my location sorted by distance](https://d2mxuefqeaa7sj.cloudfront.net/s_42947E7C35A750A25D07D7432619573EA3862052B5357BE997A071FD6789712E_1510745488079_Assignment+-+FullStack+Web.png)
+```python
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 15
+}
+```
+```json
 
-![My Preferred Shop page - List of already preferred shops](https://d2mxuefqeaa7sj.cloudfront.net/s_42947E7C35A750A25D07D7432619573EA3862052B5357BE997A071FD6789712E_1510745502935_Assignment+-+FullStack+Web+copy.png)
+
+GET /shops/?lon=-5.5860465999999995&lat=34.7963763
+
+HTTP 200 OK
+Allow: GET, POST, HEAD, OPTIONS
+Content-Type: application/json
+Vary: Accept
+
+{
+    "count": 342,
+    "next": "http://localhost:8000/shops/?lat=34.7963763&limit=15&lon=-5.5860465999999995&offset=15",
+    "previous": null,
+    "results": [
+        {
+            "id": 718,
+            "name": "Filodyne",
+            "picture": "http://placehold.it/150x150",
+            "_id": "5a0c6b42fd3eb67969316d82",
+            "location": "SRID=4326;POINT (-6.747 33.98196)",
+            "email": "leilaware@filodyne.com",
+            "city": "Rabat",
+            "distance": "139.82"
+        },
+        {
+            "id": 698,
+            "name": "Filodyne",
+            "picture": "http://placehold.it/150x150",
+            "_id": "5a0c6b2dfd3eb67969316d6e",
+            "location": "SRID=4326;POINT (-6.747 33.98196)",
+            "email": "leilaware@filodyne.com",
+            "city": "Rabat",
+            "distance": "139.82"
+        },
+        .
+        .
+        .
+```
+
+## Screenshots
+![Imgur](https://i.imgur.com/RtpqvUM.png)
+![Imgur](https://i.imgur.com/PURjCdT.png)
+![Imgur](https://i.imgur.com/HNklDua.png)
