@@ -49,6 +49,10 @@ INSTALLED_APPS = [
 AUTH_USER_MODEL = 'custom_user.CustomUser'
 # AUTHENTICATION_BACKENDS = ('custom_user.backends.CustomUserAuth',)
 
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 15
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',

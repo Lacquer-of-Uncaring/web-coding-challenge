@@ -19,7 +19,7 @@
     />
     <link rel="stylesheet" href="./index.css" />
   </head>
-  <body>
+  <body onload="GetNearbyShops()">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="#">ShopViewer</a>
       <button
@@ -91,22 +91,12 @@
             id="nearby"
             role="tabpanel"
           >
-            <div class="row">
-              <div class="col-4 p-2">
-                <div class="card mx-auto" style="width: 16rem;">
-                  <h5 class="card-header p-3">Shop 1</h5>
-                  <img
-                    class="card-img-top"
-                    src="http://placehold.it/150x150"
-                    alt="Card image cap"
-                  />
-                  <div class="card-body">
-                    <a href="#" class="btn btn-success">Like</a>
-                    <a href="#" class="btn btn-danger">Dislike</a>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div
+              id="bingo-alert"
+              class="alert alert-danger mb-5"
+              role="alert"
+            ></div>
+            <div class="row" id="nearby-cards"></div>
           </div>
           <div
             class="tab-pane fade text-center p-3"
