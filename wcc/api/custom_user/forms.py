@@ -7,10 +7,6 @@ class CustomUserCreationForm(UserCreationForm):
     Creates a user with no privileges
     """
 
-    def __init__(self, *args, **kwargs):
-        super(CustomUserCreationForm, self).__init__(*args, **kwargs)
-        del self.fields['username']
-
     class Meta:
         model = CustomUser
         fields = ('email',)
@@ -22,10 +18,7 @@ class CustomUserChangeForm(UserChangeForm):
     but with password hash display field
     """
 
-    def __init__(self, *args, **kwargs):
-        super(CustomUserChangeForm, self).__init__(*args, **kwargs)
-        del self.fields['username']
-
     class Meta:
         model = CustomUser
         fields = ('email',)
+        # fields = UserChangeForm.Meta.fields

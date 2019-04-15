@@ -8,7 +8,7 @@ This README will also serve as a checklist during the development process.
 
 - [x] Your application should be split between a **back-end** and a **web front-end**.
 
-- [ ] The **front-end** should ideally be a single page app with a single index.html linking to external JS/CSS/etc.
+- [x] The **front-end** should ideally be a single page app with a single index.html linking to external JS/CSS/etc.
   - This criteria is respected excluding the login and signup pages.
 
 **back-end**: Django REST framework
@@ -17,7 +17,7 @@ This README will also serve as a checklist during the development process.
 
 - [ ] As a User, I can sign up using my email & password
 - [ ] As a User, I can sign in using my email & password
-- [ ] As a User, I can display the list of shops sorted by distance
+- [x] As a User, I can display the list of shops sorted by distance
 - [ ] As a User, I can like a shop, so it can be added to my preferred shops
 
 * Bonus points (those items are optional):
@@ -27,8 +27,6 @@ This README will also serve as a checklist during the development process.
 - [ ] As a User, I can remove a shop from my preferred shops list
 
 ## Start up Guide
-
-### Back-end
 
 Preferably set up a clean python virtual environment, with Python 3, you can use the venv module to create a virtual environment for your project:
 
@@ -87,6 +85,8 @@ Now you should be ready to migrate the models:
 (py) λ python manage.py runserver
 ```
 The api should be up now at `localhost:8000`.
+
+## API documentation
 
 A GET request to `(API_ROOT)/shops?lon=-6.8243&lat=33.80086` will return a list of shops sorted by ascending distances (in kilometers) from the specified coordinates. Ommiting the parameters will return an unsorted list. 
 
@@ -201,6 +201,8 @@ Vary: Accept
         .
         .
 ```
+
+The authentication endpoints that are used are `(API_ROOT)/rest-auth/login`, `(API_ROOT)/rest-auth/logout` and `(API_ROOT)/rest-auth/registration`. For more specific information on each, check the [official documentation](https://django-rest-auth.readthedocs.io/en/latest/api_endpoints.html)
 
 ## Screenshots
 ![Imgur](https://i.imgur.com/RtpqvUM.png)

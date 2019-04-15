@@ -4,11 +4,14 @@ from .models import Shops
 from .serializers import ShopSerializer
 from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models.functions import Distance
+from rest_framework.permissions import IsAuthenticated
 
 # Create your views here.
 
 
 class ShopView(viewsets.ModelViewSet):
+    permission_classes = (IsAuthenticated,)
+
     queryset = Shops.objects.all()
     serializer_class = ShopSerializer
 

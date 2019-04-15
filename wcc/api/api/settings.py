@@ -37,9 +37,15 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.gis',
 
-    # user apps
+    # added
+    'django.contrib.sites',
+    'allauth',
+    'allauth.account',
+    'rest_auth.registration',
+    'django.contrib.gis',
+    'rest_framework.authtoken',
+    'rest_auth',
     'rest_framework',
     'shops',
     'custom_user',
@@ -50,9 +56,17 @@ AUTH_USER_MODEL = 'custom_user.CustomUser'
 # AUTHENTICATION_BACKENDS = ('custom_user.backends.CustomUserAuth',)
 
 REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+    ),
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
     'PAGE_SIZE': 15
 }
+
+# communicating the auth mode to rest_auth
+ACCOUNT_AUTHENTICATION_METHOD = 'email'
+ACCOUNT_EMAIL_REQUIRED = True
+ACCOUNT_USERNAME_REQUIRED = False
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -137,5 +151,3 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
-
-# GDAL_LIBRARY_PATH = 'C:\OSGeo4W64\bin\gdal204.dll'
