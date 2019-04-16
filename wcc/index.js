@@ -1,11 +1,17 @@
-const API_ROOT = "http://localhost:8000/";
+const API_ROOT = "http://localhost:8000";
+const LOGIN_PATH = "/wcc/login.html";
 
 const NearbyCards = document.getElementById("nearby-cards");
 const BingoAlert = document.getElementById("bingo-alert");
 const BingoWait = document.getElementById("bingo-wait");
 let UserPosition = [];
 
+// Nearby Shops
 const GetNearbyShops = event => {
+  // Check if authenticated
+  if (!window.sessionStorage.getItem("token")) {
+    window.location.replace(LOGIN_PATH);
+  }
   // If geolocation is available, try to get the user's position
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(SuccessCallback, ErrorCallback);
@@ -24,7 +30,11 @@ SuccessCallback = position => {
   UserPosition.push(position.coords.longitude);
   UserPosition.push(position.coords.latitude);
 
-  fetch(`${API_ROOT}shops/?lon=${UserPosition[0]}&lat=${UserPosition[1]}`)
+  fetch(`${API_ROOT}/shops/?lon=${UserPosition[0]}&lat=${UserPosition[1]}`, {
+    headers: {
+      Authorization: `Token ${window.sessionStorage.getItem("token")}`
+    }
+  })
     .then(response => response.json())
     .then(json => json.results)
     .then(shops => {
@@ -70,5 +80,21 @@ ErrorCallback = error => {
   } else {
     BingoAlert.innerHTML = "Geolocation failed due to unknown error.";
     BingoAlert.style.display = "inherit";
+  }
+};
+
+const Logout = () => {
+  if (window.sessionStorage.getItem("token")) {
+    fetch(`${API_ROOT}/rest-auth/logout/`, {
+      method: "POST",
+      headers: {
+        Authorization: `Token ${window.sessionStorage.getItem("token")}`
+      }
+    })
+      .then(() => {
+        window.sessionStorage.removeItem("token");
+        window.location.replace(LOGIN_PATH);
+      })
+      .catch(err => console.log(err));
   }
 };

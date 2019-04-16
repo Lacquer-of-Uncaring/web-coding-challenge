@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # added
     'django.contrib.sites',
+    'corsheaders',
     'allauth',
     'allauth.account',
     'rest_auth.registration',
@@ -76,7 +77,13 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
+
+CORS_ORIGIN_WHITELIST = (
+    'localhost:5500',
+)
 
 ROOT_URLCONF = 'api.urls'
 

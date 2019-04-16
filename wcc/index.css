@@ -2,6 +2,13 @@ body {
   font-family: "Roboto Mono";
 }
 
+.my-app {
+  border: 1px #e4e4e4 solid;
+  box-shadow: 8px 8px 8px #e4e4e4;
+  margin-top: 100px;
+  width: 50%;
+}
+
 .card {
   border: 1px #e4e4e4 solid;
   box-shadow: 8px 8px 8px #e4e4e4;
@@ -67,12 +74,7 @@ body {
   background: white;
 }
 
-#bingo-alert {
-  border-radius: 0;
-  display: none;
-}
-
-#bingo-wait {
+.alert {
   border-radius: 0;
   display: none;
 }

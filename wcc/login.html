@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Login & Registration</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto+Mono"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <div class="container p-5 my-app">
+      <div class="p-5">
+        <nav>
+          <div class="nav nav-tabs" role="tablist">
+            <a
+              class="nav-item nav-link"
+              data-toggle="tab"
+              href="#login"
+              role="tab"
+            >
+              <span class="pb-2">
+                <i class="fas fa-sign-in-alt mr-4"></i>
+                Login
+              </span>
+            </a>
+            <a
+              class="nav-item nav-link"
+              data-toggle="tab"
+              href="#signup"
+              role="tab"
+            >
+              <span class="pb-2">
+                <i class="far fa-plus-square mr-4"></i>
+                Signup
+              </span>
+            </a>
+          </div>
+        </nav>
+        <div class="tab-content p-5">
+          <div
+            class="tab-pane fade show active text-center p-5"
+            role="tabpanel"
+          >
+            <h5 class="text-muted">
+              Easier Shopping Starts Here
+            </h5>
+          </div>
+          <div class="tab-pane fade p-3" id="login" role="tabpanel">
+            <form onsubmit="Login(event)">
+              <div
+                id="l-non-field-alert"
+                class="alert alert-danger mb-5"
+                role="alert"
+              ></div>
+              <div class="form-group">
+                <label for="email text-left">Email</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="l_email"
+                  placeholder="example@example.com"
+                />
+              </div>
+              <div
+                id="l-email-alert"
+                class="alert alert-danger mb-5"
+                role="alert"
+              ></div>
+              <div class="form-group mt-4">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="l_password" />
+              </div>
+              <div
+                id="l-password-alert"
+                class="alert alert-danger mb-5"
+                role="alert"
+              ></div>
+              <button
+                type="submit"
+                class="btn btn-outline-secondary btn-block mt-4"
+              >
+                Login
+              </button>
+            </form>
+          </div>
+          <div class="tab-pane fade p-3" id="signup" role="tabpanel">
+            <form onsubmit="Signup(event)">
+              <div class="form-group">
+                <div
+                  id="s-non-field-alert"
+                  class="alert alert-danger mb-5"
+                  role="alert"
+                ></div>
+                <label for="email text-left">Email</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="s_email"
+                  placeholder="example@example.com"
+                />
+              </div>
+              <div
+                id="s-email-alert"
+                class="alert alert-danger mb-5"
+                role="alert"
+              ></div>
+              <div class="form-group mt-4">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" id="s_password" />
+              </div>
+              <div
+                id="s-password-alert"
+                class="alert alert-danger mb-5"
+                role="alert"
+              ></div>
+              <div class="form-group mt-4">
+                <label for="password2">Password Confirm</label>
+                <input type="password" class="form-control" id="s_password2" />
+              </div>
+              <div
+                id="s-password2-alert"
+                class="alert alert-danger mb-5"
+                role="alert"
+              ></div>
+              <button
+                type="submit"
+                class="btn btn-outline-secondary btn-block mt-4"
+              >
+                Signup
+              </button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="./login.js"></script>
+  </body>
+</html>
