@@ -15,7 +15,7 @@ This README will also serve as a checklist during the development process.
 
 ## Functional spec
 
-- [ ] As a User, I can sign up using my email & password
+- [x] As a User, I can sign up using my email & password
 - [x] As a User, I can sign in using my email & password
 - [x] As a User, I can display the list of shops sorted by distance
 - [ ] As a User, I can like a shop, so it can be added to my preferred shops

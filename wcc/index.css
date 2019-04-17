@@ -78,3 +78,7 @@ body {
   border-radius: 0;
   display: none;
 }
+
+#welcome {
+  color: white;
+}

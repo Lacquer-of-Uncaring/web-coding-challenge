@@ -12,6 +12,10 @@ const GetNearbyShops = event => {
   if (!window.sessionStorage.getItem("token")) {
     window.location.replace(LOGIN_PATH);
   }
+  // Write welcome message in navbar
+  document.getElementById(
+    "welcome"
+  ).innerHTML = `Welcome, ${window.sessionStorage.getItem("email")}`;
   // If geolocation is available, try to get the user's position
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(SuccessCallback, ErrorCallback);
