@@ -1,6 +1,5 @@
 # from django.db import models
 from django.contrib.gis.db import models
-from votes.managers import VotableManager
 
 # Create your models here.
 
@@ -12,7 +11,6 @@ class Shops(models.Model):
     location = models.PointField(null=True, blank=True)
     email = models.EmailField(max_length=200)
     city = models.CharField(max_length=50)
-    votes = VotableManager()
 
     def __str__(self):
         return self.name

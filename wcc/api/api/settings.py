@@ -54,7 +54,6 @@ INSTALLED_APPS = [
 
 # This is to change the nomal user model to one with email auth
 AUTH_USER_MODEL = 'custom_user.CustomUser'
-# AUTHENTICATION_BACKENDS = ('custom_user.backends.CustomUserAuth',)
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
