@@ -26,8 +26,7 @@ const GetNearbyShops = event => {
   if (navigator.geolocation) {
     navigator.geolocation.getCurrentPosition(SuccessCallback, ErrorCallback);
     BingoWait.style.display = "inherit";
-    BingoWait.innerHTML =
-      'Getting geolocation information <i class="fas fa-spinner"></i>';
+    BingoWait.innerHTML = 'Loading <i class="fas fa-spinner"></i>';
   } else {
     BingoAlert.innerHTML =
       "Sorry, your browser does not support HTML5 geolocation.";
