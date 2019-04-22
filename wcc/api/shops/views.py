@@ -35,6 +35,8 @@ class ShopView(viewsets.ModelViewSet):
 
 
 class LikeShop(generics.GenericAPIView, mixins.UpdateModelMixin):
+    permission_classes = (IsAuthenticated,)
+
     queryset = Shops.objects.all()
     serializer_class = ShopSerializer
 
@@ -43,7 +45,7 @@ class LikeShop(generics.GenericAPIView, mixins.UpdateModelMixin):
 
 
 class LikedShops(generics.ListAPIView):
-    # permission_classes = (IsAuthenticated,)
+    permission_classes = (IsAuthenticated,)
 
     queryset = Shops.objects.all()
     serializer_class = ShopSerializer
