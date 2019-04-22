@@ -55,7 +55,9 @@ SuccessCallback = position => {
                 alt="Card image cap"
               />
               <div class="card-body">
-                <a href="#" class="btn btn-success">Like</a>
+                <a href="#" id="${
+                  shop.id
+                }" class="btn btn-success" onclick="LikeShop(event)">Like</a>
                 <a href="#" class="btn btn-danger">Dislike</a>
               </div>
             </div>
@@ -85,6 +87,48 @@ ErrorCallback = error => {
     BingoAlert.innerHTML = "Geolocation failed due to unknown error.";
     BingoAlert.style.display = "inherit";
   }
+};
+
+const LikeShop = event => {
+  // get the current user id
+  if (!window.sessionStorage.getItem("id")) {
+    fetch(`${API_ROOT}/rest-auth/user/`, {
+      headers: {
+        Authorization: `Token ${window.sessionStorage.getItem("token")}`
+      }
+    })
+      .then(response => response.json())
+      .then(user => window.sessionStorage.setItem("id", user.id))
+      .catch(err => console.log(err));
+  }
+  // get the list of the shop likers
+  fetch(`${API_ROOT}/shops/${event.target.id}/`, {
+    headers: {
+      Authorization: `Token ${window.sessionStorage.getItem("token")}`
+    }
+  })
+    .then(response => response.json())
+    .then(shop => shop.likers)
+    .then(likers => {
+      likers.push(parseInt(window.sessionStorage.getItem("id")));
+      return likers;
+    })
+    .then(updated_likers => {
+      const data = {
+        likers: updated_likers
+      };
+      fetch(`${API_ROOT}/like/${event.target.id}/`, {
+        method: "PATCH",
+        body: JSON.stringify(data),
+        headers: {
+          Authorization: `Token ${window.sessionStorage.getItem("token")}`,
+          "Content-Type": "application/json"
+        }
+      })
+        .then(response => console.log(response.status))
+        .catch(err => console.log(err));
+    })
+    .catch(err => console.log(err));
 };
 
 const Logout = () => {

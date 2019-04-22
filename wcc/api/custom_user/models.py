@@ -2,6 +2,7 @@ from time import timezone
 from django.db import models
 from django.utils.http import urlquote
 from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
+from shops.models import Shops
 
 # Create your models here.
 
@@ -41,6 +42,7 @@ class CustomUser(AbstractBaseUser):
     is_active = models.BooleanField(default=True)
     is_superuser = models.BooleanField(default=False)
     is_staff = models.BooleanField(default=False)
+    likes = models.ManyToManyField(Shops, related_name='likers')
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

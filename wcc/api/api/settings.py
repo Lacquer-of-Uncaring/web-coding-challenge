@@ -55,6 +55,10 @@ INSTALLED_APPS = [
 # This is to change the nomal user model to one with email auth
 AUTH_USER_MODEL = 'custom_user.CustomUser'
 
+REST_AUTH_SERIALIZERS = {
+    'USER_DETAILS_SERIALIZER': 'custom_user.serializers.UserSerializer',
+}
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',

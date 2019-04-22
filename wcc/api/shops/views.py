@@ -1,6 +1,8 @@
+from copy import deepcopy
 from django.shortcuts import render
-from rest_framework import viewsets
+from rest_framework import viewsets, generics, mixins
 from .models import Shops
+from custom_user.models import CustomUser
 from .serializers import ShopSerializer
 from django.contrib.gis.geos import Point
 from django.contrib.gis.db.models.functions import Distance
@@ -25,4 +27,28 @@ class ShopView(viewsets.ModelViewSet):
             user_location = Point(float(lon), float(lat), srid=4326)
             qs = qs.annotate(distance=Distance(
                 'location', user_location)).order_by('distance')
+        return qs
+
+
+class LikeShop(generics.GenericAPIView, mixins.UpdateModelMixin):
+    queryset = Shops.objects.all()
+    serializer_class = ShopSerializer
+
+    def patch(self, request, *args, **kwargs):
+        return self.partial_update(request, *args, **kwargs)
+
+
+class LikedShops(generics.ListAPIView):
+    # permission_classes = (IsAuthenticated,)
+
+    queryset = Shops.objects.all()
+    serializer_class = ShopSerializer
+
+    # sending prefered shops from if user is in likers
+    def get_queryset(self):
+        qs = None
+        user_id = self.request.query_params.get('id', None)
+        if user_id:
+            qs = super().get_queryset()
+            qs = qs.filter(likers__in=[user_id])
         return qs

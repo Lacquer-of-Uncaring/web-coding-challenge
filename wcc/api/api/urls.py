@@ -18,7 +18,7 @@ from django.urls import path, include
 from django.conf.urls import url
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    # path('admin/', admin.site.urls),
     path('', include('shops.urls')),
     path('', include('custom_user.urls')),
     path('rest-auth/', include('rest_auth.urls')),
