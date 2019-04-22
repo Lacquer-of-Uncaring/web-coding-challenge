@@ -227,6 +227,7 @@ const Logout = () => {
     })
       .then(() => {
         window.sessionStorage.removeItem("token");
+        window.sessionStorage.removeItem("id");
         window.location.replace(LOGIN_PATH);
       })
       .catch(err => console.log(err));
