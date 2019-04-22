@@ -19,12 +19,13 @@ This README will also serve as a checklist during the development process.
 - [x] As a User, I can sign in using my email & password
 - [x] As a User, I can display the list of shops sorted by distance
 - [x] As a User, I can like a shop, so it can be added to my preferred shops
+- [x] Liked shops disappear from nearby shops and vice-versa
 
 * Bonus points (those items are optional):
 
 - [ ] As a User, I can dislike a shop, so it won’t be displayed within “Nearby Shops” list during the next 2 hours
-- [ ] As a User, I can display the list of preferred shops
-- [ ] As a User, I can remove a shop from my preferred shops list
+- [x] As a User, I can display the list of preferred shops
+- [x] As a User, I can remove a shop from my preferred shops list
 
 ## Start up Guide
 
@@ -77,6 +78,7 @@ DATABASES = {
     },
 }
 ```
+
 Now you should be ready to migrate the models:
 
 ```bash
@@ -84,11 +86,12 @@ Now you should be ready to migrate the models:
 (py) λ python manage.py migrate
 (py) λ python manage.py runserver
 ```
+
 The api should be up now at `localhost:8000`.
 
 ## API documentation
 
-A GET request to `(API_ROOT)/shops?lon=-6.8243&lat=33.80086` will return a list of shops sorted by ascending distances (in kilometers) from the specified coordinates. Ommiting the parameters will return an unsorted list. 
+A GET request to `(API_ROOT)/shops?lon=-6.8243&lat=33.80086&id=1` will return a list of shops sorted by ascending distances (in kilometers) from the specified coordinates. Ommiting the parameters will return an unsorted list. The user id is used to exclude already liked shops from showing up on the main page.
 
 ```json
 GET /shops/?lon=-6.8243&lat=33.80086
@@ -162,6 +165,7 @@ REST_FRAMEWORK = {
     'PAGE_SIZE': 15
 }
 ```
+
 ```json
 GET /shops/?lon=-5.5860465999999995&lat=34.7963763
 
@@ -202,7 +206,15 @@ Vary: Accept
 
 The authentication endpoints that are used are `(API_ROOT)/rest-auth/login`, `(API_ROOT)/rest-auth/logout` and `(API_ROOT)/rest-auth/registration`. For more specific information on each, check the [official documentation](https://django-rest-auth.readthedocs.io/en/latest/api_endpoints.html)
 
+For the like/dislike functionality, a partial update api view is exposed at `(API_ROOT)/like/<pk>/` and a list api view at `(API_ROOT)/prefered/?id=<user_id>`
+
+## Comments
+
+Reviewers might notice that some functionality that should idealy be handled by the back-end was instead relagated to the front-end instead. This is not a delibrate choice, nor an oversight. Indeed, I would have quite like to make the api much more robust and extensible, but only so much could be acomplished within a week of learning the basics of the framework.
+
 ## Screenshots
-![Imgur](https://i.imgur.com/RtpqvUM.png)
+
+![Imgur](https://i.imgur.com/UScg7Yy.png)
 ![Imgur](https://i.imgur.com/PURjCdT.png)
-![Imgur](https://i.imgur.com/HNklDua.png)
+![Imgur](https://i.imgur.com/qqOK2Lx.png)
+![Imgur](https://i.imgur.com/UCDLA6a.png)

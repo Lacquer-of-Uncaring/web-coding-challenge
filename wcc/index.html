@@ -19,7 +19,7 @@
     />
     <link rel="stylesheet" href="./index.css" />
   </head>
-  <body onload="GetNearbyShops()">
+  <body onload="LoadShops(event)">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <a class="navbar-brand" href="#">ShopViewer</a>
       <button
@@ -109,19 +109,6 @@
           >
             <div class="row" id="prefered-cards">
               <!--Here go prefered shops' cards-->
-              <div class="col-4 p-2">
-                <div class="card mx-auto" style="width: 16rem;">
-                  <h5 class="card-header p-3">Shop 1</h5>
-                  <img
-                    class="card-img-top"
-                    src="http://placehold.it/150x150"
-                    alt="Card image cap"
-                  />
-                  <div class="card-body">
-                    <a href="#" class="btn btn-danger">Remove</a>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
         </div>
